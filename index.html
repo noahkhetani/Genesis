@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EVOLVE — Living Simulation</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-inner">
+      <h1 class="loading-logo">EVOLVE</h1>
+      <p class="loading-tagline">Living civilization simulation</p>
+      <div class="loading-bar-track">
+        <div id="loading-bar" class="loading-bar-fill"></div>
+      </div>
+      <p id="loading-status" class="loading-status">Initialising…</p>
+    </div>
+  </div>
+
+  <div id="simulation" class="simulation hidden">
+
+    <canvas id="world-canvas" aria-label="World simulation canvas"></canvas>
+
+    <header class="top-bar" role="toolbar" aria-label="Simulation controls">
+      <div class="top-bar-brand">
+        <span class="brand-mark">◈</span>
+        <span class="brand-name">EVOLVE</span>
+      </div>
+
+      <div class="top-bar-stats">
+        <div class="stat-chip">
+          <span class="stat-label">TICK</span>
+          <span id="tick-display" class="stat-value">0</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-label">AGENTS</span>
+          <span id="agent-count" class="stat-value">0</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-label">CIVS</span>
+          <span id="civ-count" class="stat-value">0</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-label">DEAD</span>
+          <span id="dead-count" class="stat-value dead">0</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-label">FPS</span>
+          <span id="fps-display" class="stat-value">60</span>
+        </div>
+        <div class="stat-chip accent">
+          <span class="stat-label">SPEED</span>
+          <span id="speed-display" class="stat-value">1×</span>
+        </div>
+      </div>
+
+      <div class="top-bar-controls">
+        <button id="btn-slower" class="ctrl-btn" type="button" title="Slow down">◀◀</button>
+        <button id="btn-pause" class="ctrl-btn primary" type="button" title="Pause / resume">⏸</button>
+        <button id="btn-faster" class="ctrl-btn" type="button" title="Speed up">▶▶</button>
+        <button id="btn-reset" class="ctrl-btn danger" type="button" title="New world">↺</button>
+      </div>
+    </header>
+
+    <aside class="side-panel panel-left" aria-label="World legend and statistics">
+      <section class="panel-block">
+        <h2 class="panel-title">Biomes</h2>
+        <div id="legend-items" class="legend-list"></div>
+      </section>
+
+      <section class="panel-block panel-block-grow">
+        <h2 class="panel-title">Population</h2>
+        <div id="detailed-stats" class="detailed-stats"></div>
+      </section>
+    </aside>
+
+    <aside class="side-panel panel-right" aria-label="Events and minimap">
+      <section class="panel-block panel-block-grow">
+        <h2 class="panel-title">World Events</h2>
+        <div id="event-messages" class="event-log"></div>
+      </section>
+
+      <section class="panel-block">
+        <h2 class="panel-title">Minimap</h2>
+        <div id="minimap-container" class="minimap-container" title="Click to pan camera">
+          <canvas id="minimap-canvas" width="160" height="125"></canvas>
+        </div>
+        <p class="panel-hint">Click to jump · Scroll to zoom · WASD to pan</p>
+      </section>
+    </aside>
+
+    <aside id="inspector-panel" class="inspector-panel" style="display: none" aria-label="Entity inspector">
+      <header class="inspector-header">
+        <h2 class="panel-title">Inspector</h2>
+        <button id="inspector-close" class="inspector-close" type="button" aria-label="Close inspector">✕</button>
+      </header>
+      <div id="inspector-content" class="inspector-content"></div>
+    </aside>
+
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
